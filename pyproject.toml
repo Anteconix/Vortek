@@ -1,0 +1,15 @@
+[project]
+name = "vortek"
+version = "0.1.0"
+description = "Default template for PDM package"
+authors = [
+    {name = "Magno", email = "dutracm04@gmail.com"},
+]
+dependencies = ["pdm-vscode>=0.1.1", "pdm-autoexport>=0.2.0"]
+requires-python = "==3.13.*"
+readme = "README.md"
+license = {text = "MIT"}
+
+
+[tool.pdm]
+distribution = false
