@@ -1,7 +1,8 @@
-# Problema: Uma empresa de filmagem, consultoria financeira e suporte de informática precisa de uma plataforma online para unificar todos esses produtos em um só lugar.
+# Problema:
+Uma empresa de filmagem, consultoria financeira e suporte de informática precisa de uma plataforma online para unificar todos esses produtos em um só lugar.
 
-## Tecnologias: VueJs e Python com o framework Django.
-## SGBD: SQLite
+Tecnologias: VueJs e Python com o framework Django.
+SGBD: SQLite
 
 # Requisitos Funcionais:
 
