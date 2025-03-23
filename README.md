@@ -1,7 +1,8 @@
 # Problema:
-Uma empresa de filmagem, consultoria financeira e suporte de informática precisa de uma plataforma online para unificar todos esses produtos em um só lugar.
+Uma empresa de consultoria financeira, suporte de informática e filmagem precisa de uma plataforma online para unificar todos esses produtos em um só lugar.
 
-Tecnologias: VueJs e Python com o framework Django.
+Tecnologias: Vue.js e Python com o framework Django.
+
 SGBD: SQLite
 
 # Requisitos Funcionais:
@@ -22,7 +23,7 @@ RF007 - Adicionar postagens/anúncios (CRUD) - O sistema deve permitir que o adm
 
 RF008 - Adicionar álbuns (CRUD) - O sistema deve permitir que o admin adicione notícias e edite as descrições dos serviços.
 
-# Reqquisitos Não Funcioanis
+# Requisitos Não Funcionais:
 
 RNF001 - O sistema deverá se comunicar com o banco de dados das criptomoedas para visualização em tempo real.
 
