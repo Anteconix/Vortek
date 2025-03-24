@@ -22,14 +22,14 @@ class Comentario(models.Model):
 class Criptoativo(models.Model):
     cripto_sigla = models.CharField(max_length=10)
     Criptoativo = models.CharField(max_length=100)
-    valor = models.DecimalField(max_digits=10, decimal_places=5)
+    valor = models.DecimalField(max_digits=10, decimal_places=3)
     def __str__(self):
             return self.cripto_sigla
 
 class Criptoativo_adq(models.Model):
     cripto_sigla = models.ForeignKey(Criptoativo, on_delete=models.CASCADE, related_name="cripto_siglas")
     criptoativo = models.ForeignKey(Criptoativo, on_delete=models.CASCADE, related_name="criptoativos")
-    quant_adq = models.DecimalField(max_digits=10, decimal_places=5)
+    quant_adq = models.DecimalField(max_digits=10, decimal_places=3)
     valor = models.ForeignKey(Criptoativo, on_delete=models.CASCADE, related_name="valors")
     def __str__(self):
         return self.cripto_sigla
