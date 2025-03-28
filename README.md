@@ -36,3 +36,11 @@ RNF004 - Quando o usuário estiver logado, o sistema deverá mostrar uma página
 RNF005 - O sistema deve enviar o usuário para a página do serviço referente ao ícone clicado na página principal. 
 
 RNF006 - O sistema será feito em Vue.js e Django
+
+# Plano de Trabalho
+
+Bryann: desenvolvimento do front-end
+
+Carlos: desenvolvimento do back-end
+
+Todos: definição dos requisitos do sistema, definição do banco de dados, design de telas, protótipo.
