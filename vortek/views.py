@@ -1,3 +1,15 @@
-from django.shortcuts import render
+from rest_framework.viewsets import ModelViewSet
 
-# Create your views here.
+from vortek.models import Noticia, Comentario, Criptoativo
+from vortek.serializers import NoticiaSerializer, ComentarioSerializer, CriptoativoSerializer
+
+class NotiticaViewSet(ModelViewSet):
+    queryset = Noticia.objects.all()
+    serializer_class = NoticiaSerializer
+    
+class ComentarioViewSet(ModelViewSet):
+    queryset = Comentario.objects.all()
+    serializer_class = ComentarioSerializer
+class CriptoativoViewSet(ModelViewSet):
+    queryset = Criptoativo.objects.all()
+    serializer_class = CriptoativoSerializer
