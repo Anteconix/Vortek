@@ -5,7 +5,7 @@
 groups = ["default"]
 strategy = ["inherit_metadata"]
 lock_version = "4.5.0"
-content_hash = "sha256:c94200f632f1fcc16022ed99e1ef0f7faf83b91cc41ef93a73069a6ea4b8ee0f"
+content_hash = "sha256:5937688ec349389423ba3bbc8759d2b208e9876bc949e3feb781e704d94ee7c8"
 
 [[metadata.targets]]
 requires_python = "==3.13.*"
@@ -71,6 +71,22 @@ files = [
 ]
 
 [[package]]
+name = "djangorestframework-simplejwt"
+version = "5.5.0"
+requires_python = ">=3.9"
+summary = "A minimal JSON Web Token authentication plugin for Django REST Framework"
+groups = ["default"]
+dependencies = [
+    "django>=4.2",
+    "djangorestframework>=3.14",
+    "pyjwt<2.10.0,>=1.7.1",
+]
+files = [
+    {file = "djangorestframework_simplejwt-5.5.0-py3-none-any.whl", hash = "sha256:4ef6b38af20cdde4a4a51d1fd8e063cbbabb7b45f149cc885d38d905c5a62edb"},
+    {file = "djangorestframework_simplejwt-5.5.0.tar.gz", hash = "sha256:474a1b737067e6462b3609627a392d13a4da8a08b1f0574104ac6d7b1406f90e"},
+]
+
+[[package]]
 name = "pdm-autoexport"
 version = "0.2.0"
 requires_python = ">=3.7"
@@ -90,6 +106,17 @@ groups = ["default"]
 files = [
     {file = "pdm-vscode-0.1.1.tar.gz", hash = "sha256:b471cf79cb4c123c907236a89b1808999ece58196300bf79e9409acb27a94387"},
     {file = "pdm_vscode-0.1.1-py3-none-any.whl", hash = "sha256:3c3f6b737176f2a59e9ec4ba5f8b5c0cfb16a92c6ed05f8a45905c275b16ce7e"},
+]
+
+[[package]]
+name = "pyjwt"
+version = "2.9.0"
+requires_python = ">=3.8"
+summary = "JSON Web Token implementation in Python"
+groups = ["default"]
+files = [
+    {file = "PyJWT-2.9.0-py3-none-any.whl", hash = "sha256:3b02fb0f44517787776cf48f2ae25d8e14f300e6d7545a4315cee571a415e850"},
+    {file = "pyjwt-2.9.0.tar.gz", hash = "sha256:7e1e5b56cc735432a7369cbfa0efe50fa113ebecdc04ae6922deba8b84582d0c"},
 ]
 
 [[package]]
