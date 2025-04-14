@@ -7,21 +7,29 @@ SGBD: SQLite
 
 # Requisitos Funcionais:
 
-RF001 - Registro do usuário (CRUD) - O sistema deve permitir o registro do usuário para ter acesso às funcionalidades. Dados: nome, email, senha. 
+RF001 - Registro do usuário (CRUD) - O sistema deve permitir o registro do usuário no sistema de criptomoedas para ter acesso às funcionalidades. Dados: nome, email, senha. 
 
 RF002 - Autenticação - O sistema deve permitir autenticação do usuário na página de login. Dados: nome de usuário, senha. 
 
 RF003 - Recuperar senha - O sistema deve possuir uma função por onde o usuário pode recuperar sua senha. 
 
-RF004 - Acesso a notícias e lojas - O sistema deve permitir que o usuário acesse as notícias e aos serviços.
+RF004 - Acesso aos ativos - O sistema deve permitir que o usuário possa acessar seus ativos digitais para gerenciá-los
 
-RF005 - Busca - O sistema deve permitir a busca de notícias.
+RF005 - Busca - O sistema deve permitir a busca de criptomoedas.
 
 RF006 - Atualizar conta (CRUD) - O sistema deve possuir uma tela por onde o usuário poderá atualizar sua conta. 
 
-RF007 - Adicionar postagens/anúncios (CRUD) - O sistema deve permitir que o admin adicione postagens/anúncios 
+RF007 - Adicionar postagens/anúncios (CRUD) - O sistema deve permitir que o admin adicione postagens/anúncios a respeito de notícias e novidades sobre seus serviços e modificações no sistema.
 
-RF008 - Adicionar álbuns (CRUD) - O sistema deve permitir que o admin adicione notícias e edite as descrições dos serviços.
+RF008 - Simular - O sistema deve permitir que o usuário simule transações com suas criptomoedas
+
+RF009 - Compra P2P - O sistema deve permitir que o usuário faça contato com outros investidores interessados em fazer a venda de seus ativos da forma P2P (Person To Person)
+
+RF010 - Suporte ao sistema - O sistema deve disponibilizar ao usuário suporte para os problemas que possam vir a ocorrer no uso do sistema de criptomoedas.
+
+RF011 - Produções - O sistema deve permitir que o usuário veja as fotos publicadas pela Vortek Produções (nicho de fotografias da empresa) e solicite cotações
+
+RF012 - Suporte de TI - O sistema deve permitir que o usuário solicite cotações sobre os serviços da Vortek Consultoria (nicho de suporte de informática da empresa)
 
 # Requisitos Não Funcionais:
 
@@ -35,12 +43,6 @@ RNF004 - Quando o usuário estiver logado, o sistema deverá mostrar uma página
 
 RNF005 - O sistema deve enviar o usuário para a página do serviço referente ao ícone clicado na página principal. 
 
-RNF006 - O sistema será feito em Vue.js e Django
+RNF006 - O sistema deverá ser feito em Vue.js e Django
 
-# Plano de Trabalho
-
-Bryann: desenvolvimento do front-end
-
-Carlos: desenvolvimento do back-end
-
-Todos: definição dos requisitos do sistema, definição do banco de dados, design de telas, protótipo.
+RNF007 - O sistema deverá ser otimizado e responsivo para computadores e celulares
