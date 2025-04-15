@@ -15,4 +15,4 @@ class ComentarioSerializer(ModelSerializer):
 class CriptoativoSerializer(ModelSerializer):
     class Meta:
         model = Criptoativo
-        fields = "__all__"
+        fields = ['id', 'cripto_sigla', 'Criptoativo', 'valor']
