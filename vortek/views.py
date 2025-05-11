@@ -1,7 +1,7 @@
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.permissions import IsAuthenticated
-from vortek.models import Noticia, Comentario, Criptoativo
-from vortek.serializers import NoticiaSerializer, ComentarioSerializer, CriptoativoSerializer
+from vortek.models import Noticia, Comentario, Criptoativo, Aporte
+from vortek.serializers import NoticiaSerializer, ComentarioSerializer, CriptoativoSerializer, AporteSerializer
 
 class NotiticaViewSet(ModelViewSet):
     queryset = Noticia.objects.all()
@@ -13,3 +13,7 @@ class ComentarioViewSet(ModelViewSet):
 class CriptoativoViewSet(ModelViewSet):
     queryset = Criptoativo.objects.all()
     serializer_class = CriptoativoSerializer
+
+class AporteViewSet(ModelViewSet):
+    queryset = Aporte.objects.all()
+    serializer_class = AporteSerializer

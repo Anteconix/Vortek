@@ -7,12 +7,13 @@ from rest_framework_simplejwt.views import (
 
 from rest_framework.routers import DefaultRouter
 
-from vortek.views import NotiticaViewSet, ComentarioViewSet, CriptoativoViewSet
+from vortek.views import NotiticaViewSet, ComentarioViewSet, CriptoativoViewSet, AporteViewSet
 
 router = DefaultRouter()
 router.register(r"noticias", NotiticaViewSet)   
 router.register(r"comentarios", ComentarioViewSet)
 router.register(r"criptoativos", CriptoativoViewSet)
+router.register(r"aportes", AporteViewSet)
 
 urlpatterns = [
     path("admin/", admin.site.urls),

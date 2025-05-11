@@ -33,3 +33,12 @@ class Criptoativo_adq(models.Model):
     valor = models.ForeignKey(Criptoativo, on_delete=models.CASCADE, related_name="valors")
     def __str__(self):
         return self.cripto_sigla
+    
+class Aporte(models.Model):
+    criptoativo = models.ForeignKey(Criptoativo, on_delete=models.CASCADE)
+    data_aporte = models.DateField(auto_now_add=True)
+    valor_aportado = models.DecimalField(max_digits=10, decimal_places=3)
+    quantidade = models.DecimalField(max_digits=10, decimal_places=8)
+
+    def __str__(self):
+        return f"{self.criptoativo.cripto_sigla} - {self.valor_aportado}"
