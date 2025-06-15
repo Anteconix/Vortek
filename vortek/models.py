@@ -15,6 +15,7 @@ class Usuario(AbstractUser):
 class Noticia(models.Model):
     titulo_noticia = models.CharField(max_length=100)
     conteudo_noticia = models.TextField()
+
     def __str__(self):
         return self.titulo_noticia
 
@@ -25,21 +26,16 @@ class Criptoativo(models.Model):
     cripto_sigla = models.CharField(max_length=10)
     Criptoativo = models.CharField(max_length=100)
     valor = models.DecimalField(max_digits=10, decimal_places=3)
-    def __str__(self):
-        return self.cripto_sigla
 
-class Criptoativo_adq(models.Model):
-    cripto_sigla = models.ForeignKey(Criptoativo, on_delete=models.CASCADE, related_name="cripto_siglas")
-    criptoativo = models.ForeignKey(Criptoativo, on_delete=models.CASCADE, related_name="criptoativos")
-    quant_adq = models.DecimalField(max_digits=10, decimal_places=3)
-    valor = models.ForeignKey(Criptoativo, on_delete=models.CASCADE, related_name="valors")
     def __str__(self):
         return self.cripto_sigla
 
 class Aporte(models.Model):
+    usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
     criptoativo = models.ForeignKey(Criptoativo, on_delete=models.CASCADE)
-    data_aporte = models.DateField(auto_now_add=True)
+    data_aporte = models.DateField()
     valor_aportado = models.DecimalField(max_digits=10, decimal_places=3)
     quantidade = models.DecimalField(max_digits=10, decimal_places=8)
+
     def __str__(self):
-        return f"{self.criptoativo.cripto_sigla} - {self.valor_aportado}"
+        return f"{self.usuario.email} - {self.criptoativo.cripto_sigla} - R$ {self.valor_aportado}"

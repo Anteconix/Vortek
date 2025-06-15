@@ -1,6 +1,5 @@
-from rest_framework.serializers import ModelSerializer
+from rest_framework.serializers import ModelSerializer, CharField
 from vortek.models import Noticia, Comentario, Criptoativo, Aporte, Usuario
-
 class NoticiaSerializer(ModelSerializer):
     class Meta:
         model = Noticia
@@ -17,10 +16,13 @@ class CriptoativoSerializer(ModelSerializer):
         fields = ['id', 'cripto_sigla', 'Criptoativo', 'valor']
 
 class AporteSerializer(ModelSerializer):
+    criptoativo = CriptoativoSerializer(read_only=True)
+    moeda = CharField(write_only=True, required=False)
+
     class Meta:
         model = Aporte
-        fields = '__all__'
-
+        fields = ['id', 'usuario', 'criptoativo', 'data_aporte', 'valor_aportado', 'quantidade', 'moeda']
+        read_only_fields = ['usuario', 'criptoativo']
 class UsuarioSerializer(ModelSerializer):
     class Meta:
         model = Usuario

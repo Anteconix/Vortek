@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from .models import Usuario, Noticia, Comentario, Criptoativo, Criptoativo_adq
+from .models import Usuario, Noticia, Comentario, Criptoativo
 
 @admin.register(Usuario)
 class UsuarioAdmin(UserAdmin):
@@ -17,4 +17,4 @@ class UsuarioAdmin(UserAdmin):
 admin.site.register(Noticia)
 admin.site.register(Comentario)
 admin.site.register(Criptoativo)
-admin.site.register(Criptoativo_adq)
+# admin.site.register(Criptoativo_adq)
