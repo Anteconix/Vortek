@@ -1,5 +1,6 @@
-from rest_framework.serializers import ModelSerializer, CharField
+from rest_framework.serializers import ModelSerializer, CharField, EmailField, ImageField
 from vortek.models import Noticia, Comentario, Criptoativo, Aporte, Usuario
+
 class NoticiaSerializer(ModelSerializer):
     class Meta:
         model = Noticia
@@ -23,7 +24,11 @@ class AporteSerializer(ModelSerializer):
         model = Aporte
         fields = ['id', 'usuario', 'criptoativo', 'data_aporte', 'valor_aportado', 'quantidade', 'moeda']
         read_only_fields = ['usuario', 'criptoativo']
+
 class UsuarioSerializer(ModelSerializer):
+    email = EmailField()
+    foto_perfil = ImageField(required=False, allow_null=True)
+
     class Meta:
         model = Usuario
         fields = ['id', 'nome_completo', 'email', 'foto_perfil']

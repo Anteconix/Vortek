@@ -14,6 +14,7 @@ from vortek.views import (
     UserView,
     CustomPasswordResetView,
     CustomPasswordResetConfirmView,
+    ChangePasswordView,
     preco_binance
 )
 
@@ -27,10 +28,10 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("api/", include(router.urls)),
     path("api/user/", UserView.as_view()),
+    path("api/user/change_password/", ChangePasswordView.as_view(), name="user-change-password"),
     path("token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
     path("token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
     path('api/preco/<str:sigla>/', preco_binance),
-    # Rotas para redefinição de senha
     path('api/reset_password/', CustomPasswordResetView.as_view(), name='custom_password_reset'),
     path('api/reset_password_confirm/<uidb64>/<token>/', CustomPasswordResetConfirmView.as_view(), name='custom_password_reset_confirm'),
 ]

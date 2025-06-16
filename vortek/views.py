@@ -6,8 +6,10 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.permissions import AllowAny
+from rest_framework.parsers import MultiPartParser, FormParser
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
+
 
 from vortek.models import Noticia, Comentario, Criptoativo, Aporte, Usuario
 from vortek.serializers import (
@@ -73,10 +75,18 @@ class AporteViewSet(ModelViewSet):
 
 class UserView(APIView):
     permission_classes = [IsAuthenticated]
+    parser_classes = (MultiPartParser, FormParser)
 
     def get(self, request):
         serializer = UsuarioSerializer(request.user)
         return Response(serializer.data)
+
+    def put(self, request):
+        serializer = UsuarioSerializer(request.user, data=request.data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 # --- ENVIO DE LINK DE REDEFINIÇÃO DE SENHA ---
 @method_decorator(csrf_exempt, name='dispatch')
@@ -127,3 +137,21 @@ class CustomPasswordResetConfirmView(APIView):
         user.set_password(nova_senha)
         user.save()
         return Response({'mensagem': 'Senha redefinida com sucesso.'}, status=status.HTTP_200_OK)
+    
+class ChangePasswordView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        user = request.user
+        old_password = request.data.get("old_password")
+        new_password = request.data.get("new_password")
+
+        if not old_password or not new_password:
+            return Response({"detail": "Campos obrigatórios não enviados."}, status=status.HTTP_400_BAD_REQUEST)
+
+        if not user.check_password(old_password):
+            return Response({"detail": "Senha anterior incorreta."}, status=status.HTTP_400_BAD_REQUEST)
+
+        user.set_password(new_password)
+        user.save()
+        return Response({"detail": "Senha alterada com sucesso."}, status=status.HTTP_200_OK)
