@@ -17,4 +17,3 @@ class UsuarioAdmin(UserAdmin):
 admin.site.register(Noticia)
 admin.site.register(Comentario)
 admin.site.register(Criptoativo)
-# admin.site.register(Criptoativo_adq)

@@ -43,8 +43,6 @@ def preco_binance(request, sigla):
         return Response({"erro": str(e)}, status=500)
 User = get_user_model()
 
-# --- CRUD PADRÕES ---
-
 class NotiticaViewSet(ModelViewSet):
     queryset = Noticia.objects.all()
     serializer_class = NoticiaSerializer
@@ -71,8 +69,6 @@ class AporteViewSet(ModelViewSet):
         criptoativo = Criptoativo.objects.get(id=cripto_id)
         serializer.save(usuario=self.request.user, criptoativo=criptoativo)
 
-# --- USUÁRIO LOGADO ---
-
 class UserView(APIView):
     permission_classes = [IsAuthenticated]
     parser_classes = (MultiPartParser, FormParser)
@@ -88,10 +84,9 @@ class UserView(APIView):
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-# --- ENVIO DE LINK DE REDEFINIÇÃO DE SENHA ---
 @method_decorator(csrf_exempt, name='dispatch')
 class CustomPasswordResetView(APIView):
-    permission_classes = [AllowAny]  # <- LIBERA A ROTA
+    permission_classes = [AllowAny] 
 
     def post(self, request):
         email = request.data.get('email')
@@ -118,7 +113,7 @@ class CustomPasswordResetView(APIView):
 
 @method_decorator(csrf_exempt, name='dispatch')
 class CustomPasswordResetConfirmView(APIView):
-    permission_classes = [AllowAny]  # <- LIBERA A ROTA
+    permission_classes = [AllowAny] 
 
     def post(self, request, uidb64, token):
         nova_senha = request.data.get('nova_senha')
