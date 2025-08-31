@@ -124,6 +124,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # ⚠️ Modelo de usuário personalizado
 AUTH_USER_MODEL = 'vortek.Usuario'
 
+# === URL do FRONTEND (Vue) ===
+# Ajuste para seu domínio/porta de produção quando necessário.
+FRONTEND_URL = "http://localhost:5173"
+
 # Envio de email de redefinição
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # ou para produção:
@@ -134,6 +138,8 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'vortekmail@gmail.com'
 EMAIL_HOST_PASSWORD = 'gplg ccir iupo wukq'
 
+# Remetente padrão
+DEFAULT_FROM_EMAIL = "no-reply@seu-dominio.com"
 
 # Django REST Framework
 REST_FRAMEWORK = {

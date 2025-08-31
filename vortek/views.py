@@ -10,7 +10,6 @@ from rest_framework.parsers import MultiPartParser, FormParser
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
 
-
 from vortek.models import Noticia, Comentario, Criptoativo, Aporte, Usuario
 from vortek.serializers import (
     NoticiaSerializer,
@@ -27,22 +26,34 @@ from django.core.mail import send_mail
 from django.contrib.auth import get_user_model
 from django.conf import settings
 
-
+# ===============================
+# API de preço (proxy da Binance)
+# ===============================
 @api_view(['GET'])
-@permission_classes([IsAuthenticated])
+@permission_classes([AllowAny])
 def preco_binance(request, sigla):
+    """
+    Consulta o preço atual de uma cripto em BRL via Binance.
+    Exemplo: GET /api/preco/BTC/  -> { "preco": "356000.00" }
+    """
     try:
-        simbolo = f"{sigla.upper()}BRL"
-        url = f"https://api.binance.com/api/v3/ticker/price?symbol={simbolo}"
+        symbol = f"{sigla.upper()}BRL"
+        url = f"https://api.binance.com/api/v3/ticker/price?symbol={symbol}"
         r = requests.get(url, timeout=5)
         if r.status_code == 200:
             data = r.json()
-            return Response({"preco": data["price"]})
-        return Response({"erro": "Preço não encontrado"}, status=404)
+            return Response({"preco": data.get("price")})
+        return Response({"erro": "Preço não encontrado na Binance"}, status=404)
     except Exception as e:
-        return Response({"erro": str(e)}, status=500)
+        return Response({"erro": f"Erro ao consultar Binance: {e}"}, status=500)
+
+
 User = get_user_model()
 
+
+# ===============================
+# CRUDs
+# ===============================
 class NotiticaViewSet(ModelViewSet):
     queryset = Noticia.objects.all()
     serializer_class = NoticiaSerializer
@@ -84,36 +95,51 @@ class UserView(APIView):
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
+# ===============================
+# Fluxo de reset de senha
+# ===============================
+def _get_frontend_url() -> str:
+    return getattr(settings, "FRONTEND_URL", "http://localhost:5173").rstrip("/")
+
 @method_decorator(csrf_exempt, name='dispatch')
 class CustomPasswordResetView(APIView):
-    permission_classes = [AllowAny] 
+    permission_classes = [AllowAny]
 
     def post(self, request):
-        email = request.data.get('email')
+        email = (request.data.get('email') or "").strip().lower()
         if not email:
             return Response({'erro': 'Email é obrigatório.'}, status=status.HTTP_400_BAD_REQUEST)
 
         try:
             user = User.objects.get(email=email)
         except User.DoesNotExist:
-            return Response({'erro': 'Usuário não encontrado.'}, status=status.HTTP_404_NOT_FOUND)
+            return Response({'mensagem': 'Se o e-mail existir, enviaremos instruções de redefinição.'}, status=status.HTTP_200_OK)
 
         uid = urlsafe_base64_encode(force_bytes(user.pk))
         token = default_token_generator.make_token(user)
-        reset_link = f"http://127.0.0.1:8000/api/reset_password_confirm/{uid}/{token}/"
 
-        send_mail(
-            subject="Redefinição de senha",
-            message=f"Olá {user.nome_completo},\n\nClique no link para redefinir sua senha:\n{reset_link}",
-            from_email=settings.EMAIL_HOST_USER,
-            recipient_list=[email],
+        frontend_url = _get_frontend_url()
+        reset_link = f"{frontend_url}/login?uid={uid}&token={token}"
+
+        nome = getattr(user, "nome_completo", None) or getattr(user, "first_name", "") or ""
+        subject = "Redefinição de senha"
+        message = (
+            f"Olá {nome},\n\n"
+            f"Você solicitou a redefinição da sua senha.\n"
+            f"Acesse o link abaixo para continuar:\n\n{reset_link}\n\n"
+            f"Se você não solicitou, ignore este e-mail."
         )
 
-        return Response({'mensagem': 'Link de redefinição enviado com sucesso.'}, status=status.HTTP_200_OK)
+        from_email = getattr(settings, "DEFAULT_FROM_EMAIL", getattr(settings, "EMAIL_HOST_USER", None)) or "no-reply@localhost"
+
+        send_mail(subject, message, from_email, [email], fail_silently=False)
+        return Response({'mensagem': 'Se o e-mail existir, enviaremos instruções de redefinição.'}, status=status.HTTP_200_OK)
+
 
 @method_decorator(csrf_exempt, name='dispatch')
 class CustomPasswordResetConfirmView(APIView):
-    permission_classes = [AllowAny] 
+    permission_classes = [AllowAny]
 
     def post(self, request, uidb64, token):
         nova_senha = request.data.get('nova_senha')
@@ -132,7 +158,8 @@ class CustomPasswordResetConfirmView(APIView):
         user.set_password(nova_senha)
         user.save()
         return Response({'mensagem': 'Senha redefinida com sucesso.'}, status=status.HTTP_200_OK)
-    
+
+
 class ChangePasswordView(APIView):
     permission_classes = [IsAuthenticated]
 
