@@ -32,10 +32,7 @@ from django.conf import settings
 @api_view(['GET'])
 @permission_classes([AllowAny])
 def preco_binance(request, sigla):
-    """
-    Consulta o preço atual de uma cripto em BRL via Binance.
-    Exemplo: GET /api/preco/BTC/  -> { "preco": "356000.00" }
-    """
+    """ Consulta o preço atual de uma cripto em BRL via Binance """
     try:
         symbol = f"{sigla.upper()}BRL"
         url = f"https://api.binance.com/api/v3/ticker/price?symbol={symbol}"
@@ -47,9 +44,24 @@ def preco_binance(request, sigla):
     except Exception as e:
         return Response({"erro": f"Erro ao consultar Binance: {e}"}, status=500)
 
+# ===============================
+# API de mercado (lista 24h Binance)
+# ===============================
+@api_view(['GET'])
+@permission_classes([AllowAny])
+def mercado_binance(request):
+    """ Retorna os tickers 24h da Binance (proxy) """
+    try:
+        url = "https://api.binance.com/api/v3/ticker/24hr"
+        r = requests.get(url, timeout=5)
+        if r.status_code == 200:
+            return Response(r.json())
+        return Response({"erro": "Não foi possível obter dados da Binance"}, status=404)
+    except Exception as e:
+        return Response({"erro": f"Erro ao consultar Binance: {e}"}, status=500)
+
 
 User = get_user_model()
-
 
 # ===============================
 # CRUDs
@@ -94,7 +106,6 @@ class UserView(APIView):
             serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
 
 # ===============================
 # Fluxo de reset de senha
@@ -158,7 +169,6 @@ class CustomPasswordResetConfirmView(APIView):
         user.set_password(nova_senha)
         user.save()
         return Response({'mensagem': 'Senha redefinida com sucesso.'}, status=status.HTTP_200_OK)
-
 
 
 class ChangePasswordView(APIView):
