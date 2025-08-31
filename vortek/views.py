@@ -160,6 +160,7 @@ class CustomPasswordResetConfirmView(APIView):
         return Response({'mensagem': 'Senha redefinida com sucesso.'}, status=status.HTTP_200_OK)
 
 
+
 class ChangePasswordView(APIView):
     permission_classes = [IsAuthenticated]
 
