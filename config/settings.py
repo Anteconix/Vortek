@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Quick-start development settings - unsuitable for production
@@ -24,9 +23,18 @@ SECRET_KEY = 'django-insecure-mf84htu2^n0)uicna%wz_qq(0)s41v2ii3+kx2+0%c58fn#9f)
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "vtk-test-api.d2tecnologia.net.br",
+    ".d2tecnologia.net.br",
+    "localhost",
+    "127.0.0.1",
+]
 
-# Application definition
+CSRF_TRUSTED_ORIGINS = [
+    "https://vtk-test-api.d2tecnologia.net.br",
+    "http://vtk-test-api.d2tecnologia.net.br",
+]
+
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -42,7 +50,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',          # <-- deve ser o primeiro
+    'corsheaders.middleware.CorsMiddleware', 
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
