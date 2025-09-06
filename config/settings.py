@@ -26,6 +26,7 @@ DEBUG = True
 ALLOWED_HOSTS = [
     "vtk-test-api.d2tecnologia.net.br",
     ".d2tecnologia.net.br",
+    ".vortek.inf.br"
     "localhost",
     "127.0.0.1",
 ]
