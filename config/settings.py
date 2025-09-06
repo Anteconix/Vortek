@@ -26,7 +26,7 @@ DEBUG = True
 ALLOWED_HOSTS = [
     "vtk-test-api.d2tecnologia.net.br",
     ".d2tecnologia.net.br",
-    ".vortek.inf.br"
+    ".vortek.inf.br",
     "localhost",
     "127.0.0.1",
 ]
@@ -34,6 +34,8 @@ ALLOWED_HOSTS = [
 CSRF_TRUSTED_ORIGINS = [
     "https://vtk-test-api.d2tecnologia.net.br",
     "http://vtk-test-api.d2tecnologia.net.br",
+    "https://.vortek.inf.br",
+    "http://.vortek.inf.br",
 ]
 
 
