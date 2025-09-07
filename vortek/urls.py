@@ -12,5 +12,5 @@ urlpatterns = [
 
     # endpoints da Binance via backend
     path('preco/<str:sigla>/', preco_binance, name='preco_binance'),
-    path('mercado/', mercado_binance, name='mercado_binance'),  # novo
+    path('mercado/', mercado_binance, name='mercado_binance'),
 ]
