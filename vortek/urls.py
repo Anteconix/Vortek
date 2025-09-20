@@ -3,7 +3,7 @@ from .views import (
     CustomPasswordResetView,
     CustomPasswordResetConfirmView,
     preco_binance,
-    mercado_binance,   # novo
+    mercado_binance, 
 )
 
 urlpatterns = [

@@ -62,7 +62,6 @@ def mercado_binance(request):
 
 
 User = get_user_model()
-
 # ===============================
 # CRUDs
 # ===============================
