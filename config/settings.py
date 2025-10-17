@@ -167,3 +167,10 @@ CORS_ALLOW_ALL_ORIGINS = True
 # Media
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+from datetime import timedelta
+
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=60),  # tempo do login ativo
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=7),     # tempo pra renovar sem relogar
+}
