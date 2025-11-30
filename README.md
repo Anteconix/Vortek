@@ -120,9 +120,16 @@ O sistema deverá ser otimizado e responsivo para computadores e celulares.
 ## Backend (Django)
 
 ### 1. Instale o Python 3.10+.
-Verifique a instalação:
+Verifique a instalação e rode o projeto:
 ```bash
 python --version
 
----
+python manage.py runserver
+```
+## Frontend (Vue.JS)
+
+```bash
+npm run dev
+```
+
 
