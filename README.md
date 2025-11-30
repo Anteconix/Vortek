@@ -131,5 +131,22 @@ python manage.py runserver
 ```bash
 npm run dev
 ```
+# Imagens das principais telas do App
+
+## Tela de Login
+### Tela inicial destinada ao acesso ao sistema. O usuário informa seu email e senha para autenticação. Possui opção de recuperação de senha e direciona para o cadastro caso não tenha conta.
+[![fomIzpp.md.png](https://iili.io/fomIzpp.md.png)](https://freeimage.host/i/fomIzpp)
+
+## Tela de Aportes
+### Área central do aplicativo onde o usuário acompanha seus aportes financeiros. Exibe uma tabela organizada contendo data, valor investido, quantidade de moedas e total aproximado. Conta com opção de adicionar novos aportes via modal.
+[![fomYkfS.md.png](https://iili.io/fomYkfS.md.png)](https://freeimage.host/i/fomYkfS)
+
+## Tela de Markets
+### Tela que consome dados da API Binance, exibindo preços atualizados de criptomoedas, variação percentual e volume. Serve como painel para consulta rápida de mercado, permitindo ao usuário acompanhar tendências.
+[![fomawkg.md.png](https://iili.io/fomawkg.md.png)](https://freeimage.host/i/fomawkg)
+
+## Tela de Perfil
+### Seção destinada à edição e visualização das informações pessoais do usuário. Permite alterar nome, email, senha e foto de perfil, além de exibir dados básicos da conta.
+[![fomcUtj.md.png](https://iili.io/fomcUtj.md.png)](https://freeimage.host/i/fomcUtj)
 
 
