@@ -29,6 +29,8 @@ ALLOWED_HOSTS = [
     ".vortek.inf.br",
     "localhost",
     "127.0.0.1",
+    "api.vortek.inf.br",
+    
 ]
 
 CSRF_TRUSTED_ORIGINS = [
@@ -36,6 +38,7 @@ CSRF_TRUSTED_ORIGINS = [
     "http://vtk-test-api.d2tecnologia.net.br",
     "https://.vortek.inf.br",
     "http://.vortek.inf.br",
+    "https://api.vortek.inf.br",
 ]
 
 INSTALLED_APPS = [
@@ -136,7 +139,7 @@ AUTH_USER_MODEL = 'vortek.Usuario'
 
 # === URL do FRONTEND (Vue) ===
 # Ajuste para seu domínio/porta de produção quando necessário.
-FRONTEND_URL = "http://localhost:5173"
+FRONTEND_URL = "https://www.vortek.inf.br/"
 
 # Envio de email de redefinição
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
