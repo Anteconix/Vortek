@@ -110,7 +110,7 @@ class UserView(APIView):
 # Fluxo de reset de senha
 # ===============================
 def _get_frontend_url() -> str:
-    return getattr(settings, "FRONTEND_URL", "http://localhost:5173").rstrip("/")
+    return getattr(settings, "FRONTEND_URL", "https://www.vortek.inf.br/").rstrip("/")
 
 @method_decorator(csrf_exempt, name='dispatch')
 class CustomPasswordResetView(APIView):
